@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="main-title">🍽 Tus Recetas</h1>
+
+    <!-- Lista de recetas -->
+    <div class="grid">
+        {% for recipe in recipes %}
+        <div class="card">
+            <img src="{{ recipe.image or 'https://via.placeholder.com/400x300?text=Sin+Imagen' }}" alt="{{ recipe.title }}">
+            <h3>{{ recipe.title }}</h3>
+            <a href="{{ url_for('recipe', recipe_id=recipe.id) }}">
+                <button type="button">Ver receta</button>
+            </a>
+        </div>
+        {% else %}
+        <p>No hay recetas aún. ¡Agrega la primera! 🍳</p>
+        {% endfor %}
+    </div>
+
+    <!-- Formulario para agregar receta -->
+    <div class="form-section">
+        <h2>➕ Agregar Receta</h2>
+        <form method="POST" action="{{ url_for('add_recipe') }}">
+            <label for="title">Título</label>
+            <input type="text" name="title" id="title" required>
+
+            <label for="ingredients">Ingredientes (uno por línea)</label>
+            <textarea name="ingredients" id="ingredients" required rows="4"></textarea>
+
+            <label for="steps">Pasos (uno por línea)</label>
+            <textarea name="steps" id="steps" required rows="5"></textarea>
+
+            <label for="image">URL imagen (opcional)</label>
+            <input type="text" name="image" id="image">
+
+            <button type="submit" class="btn-submit">Guardar Receta</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

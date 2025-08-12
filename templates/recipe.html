@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}{{ recipe.title }} - Recetas{% endblock %}
+{% block content %}
+<section class="container">
+  <article class="recipe-detail">
+    <h1 class="recipe-title">{{ recipe.title }}</h1>
+
+    {% if recipe.image %}
+    <img class="recipe-image" src="{{ recipe.image }}" alt="{{ recipe.title }}">
+    {% else %}
+    <img class="recipe-image" src="https://via.placeholder.com/600x400?text=Sin+Imagen" alt="Sin imagen">
+    {% endif %}
+
+    <section class="ingredients-section">
+      <h2>Ingredientes</h2>
+
+      {% for categoria, lista in recipe.ingredients.items() %}
+      <h3>{{ categoria }}</h3>
+      <ul>
+        {% for ingrediente in lista %}
+        <li>{{ ingrediente }}</li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+    </section>
+
+    <section class="steps-section">
+      <h2>Pasos</h2>
+      <ol>
+        {% for s in recipe.steps %}
+        <li>{{ s }}</li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <a href="/" class="back-button">⬅ Volver</a>
+  </article>
+</section>
+{% endblock %}

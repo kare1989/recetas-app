@@ -1,0 +1,245 @@
+/* Tipografía */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+body {
+    font-family: 'Montserrat', system-ui, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f1e9; /* beige claro */
+    color: #4b3b20; /* marrón oscuro para texto */
+}
+
+header {
+    background: #5a4221; /* marrón oscuro */
+    color: #fffaf0; /* blanco crema */
+    padding: 20px 24px;
+    box-shadow: 0 2px 8px rgb(90 66 33 / 0.3);
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #fffaf0; /* blanco crema */
+}
+
+/* Color para el enlace en header */
+header h1 a {
+    color: #fffaf0; /* blanco crema */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+header h1 a:hover {
+    color: #8b6f47; /* marrón medio */
+    text-decoration: underline;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1100px;
+    margin: 32px auto;
+    padding: 0 20px;
+}
+
+/* Grid de recetas */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* Tarjeta receta */
+.card {
+    background: #fffaf0; /* blanco crema */
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgb(75 59 32 / 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-align: left;
+    color: #4b3b20;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgb(139 111 71 / 0.3); /* marrón medio sombra */
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    filter: brightness(95%);
+}
+
+.card h3 {
+    margin: 16px 20px 12px;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #8b6f47 !important; /* marrón medio, forzado */
+    flex-grow: 1;
+}
+
+/* Botón dentro de la tarjeta */
+.card a button {
+    margin: 0 20px 20px;
+    background: #5a4221; /* marrón oscuro */
+    color: #fffaf0; /* blanco crema */
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card a button:hover {
+    background: #8b6f47; /* marrón medio */
+}
+
+/* Formulario */
+.form-section {
+    background: #fffaf0; /* blanco crema */
+    padding: 28px 24px;
+    margin-top: 48px;
+    border-radius: 12px;
+    box-shadow: 0 3px 14px rgb(75 59 32 / 0.1);
+    color: #4b3b20;
+}
+
+.form-section h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #5a4221; /* marrón oscuro */
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #8b6f47; /* marrón medio */
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1.8px solid #bfa87a; /* marrón claro */
+    font-size: 1rem;
+    margin-bottom: 20px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    color: #4b3b20;
+    background: #fffaf0;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #5a4221; /* marrón oscuro */
+    background: #fffef7;
+}
+
+button.btn-submit {
+    background: #5a4221; /* marrón oscuro */
+    color: #fffaf0;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button.btn-submit:hover {
+    background: #8b6f47; /* marrón medio */
+}
+
+/* Texto cuando no hay recetas */
+p {
+    font-style: italic;
+    color: #7d6a4f; /* marrón medio */
+    text-align: center;
+    margin: 40px 0;
+}
+
+/* Detalle receta imagen */
+.recipe-detail img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgb(139 111 71 / 0.3);
+}
+
+/* NUEVOS estilos para recipe.html */
+
+/* Título receta */
+.recipe-title {
+    color: #5a4221; /* marrón oscuro */
+    margin-bottom: 24px;
+}
+
+/* Imagen detalle receta */
+.recipe-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(139 111 71 / 0.3);
+}
+
+/* Secciones ingredientes y pasos */
+.ingredients-section,
+.steps-section {
+    margin-top: 32px;
+}
+
+.ingredients-section h2,
+.steps-section h2 {
+    color: #8b6f47; /* marrón medio */
+    margin-bottom: 12px;
+}
+
+.ingredients-section h3 {
+    color: #5a3e2b; /* marrón oscuro */
+    margin-top: 20px;
+}
+
+.ingredients-section ul {
+    list-style: disc inside;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.steps-section ol {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    padding-left: 20px;
+}
+
+/* Botón volver */
+.back-button {
+    display: inline-block;
+    margin-top: 40px;
+    background: #5a4221; /* marrón oscuro */
+    color: #fffaf0;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #8b6f47; /* marrón medio */
+}
