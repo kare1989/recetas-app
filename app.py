@@ -1,7 +1,16 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, send_file
 import os
 
 app = Flask(__name__)
+
+# Rutas para PWA: servir manifest.json y sw.js desde la raíz con send_file y ruta absoluta
+@app.route('/manifest.json')
+def manifest():
+    return send_file(os.path.join(app.root_path, 'static', 'manifest.json'))
+
+@app.route('/sw.js')
+def service_worker():
+    return send_file(os.path.join(app.root_path, 'static', 'sw.js'))
 
 # Datos de ejemplo: lista de recetas (en un proyecto real podrías usar DB)
 RECIPES = [
@@ -32,7 +41,7 @@ RECIPES = [
             "Después agregar los demás ingredientes y batir bien",
             "Hornear 70 min a 180°C"
         ],
-        "image": "/static/css/js/images\crema volt.jpg"
+        "image": "/static/images/crema volt.jpg"
     },
     {
         "id": 2,
@@ -49,7 +58,6 @@ RECIPES = [
                 "330 g aceite",
                 "100 g piña",
                 "30 g coco rayado",
-
             ]
         },
         "steps": [
@@ -58,10 +66,9 @@ RECIPES = [
             "Por último agregar todo lo seco hasta que se integre bien todo por 1 minuto (no batir mucho).",
             "Hornear 60 min en la temperatura programada."
         ],
-        "image": "/static/css/js/images/Keke zanahoria.jpg"
+        "image": "/static/images/Keke zanahoria.jpg"
     }
 ]
-
 
 def get_next_id():
     return max([r['id'] for r in RECIPES], default=0) + 1
