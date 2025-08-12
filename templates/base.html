@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{% block title %}Mis recetas{% endblock %}</title>
-  
   <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
-  
+  <!-- En tu HTML (dentro de <head>) -->
+<link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
   <meta name="theme-color" content="#6b2f8f" />
   <link rel="manifest" href="/manifest.json">
 </head>
@@ -15,47 +14,21 @@
   <header>
     <h1><a href="/">RecetasApp</a></h1>
   </header>
-
   <main>
     {% block content %}{% endblock %}
-
-    <!-- Botón para instalar la PWA -->
-    <button id="installBtn" style="display:none; padding:10px 20px; background:#6b2f8f; color:#fff; border:none; border-radius:5px; cursor:pointer;">
-      📲 Instalar App
-    </button>
   </main>
-
   <script>
-    // Registro del Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => console.log('✅ Service Worker registrado en:', reg.scope))
-          .catch(err => console.error('❌ Error al registrar el Service Worker:', err));
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('ServiceWorker registrado:', reg.scope))
+          .catch(err => console.error('Error en registro de SW:', err));
       });
+      if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(() => console.log('Service Worker registrado'));
+}
     }
-
-    // Lógica para forzar instalación
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      document.getElementById('installBtn').style.display = 'block';
-    });
-
-    document.getElementById('installBtn').addEventListener('click', () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('✅ Usuario aceptó instalar la app');
-          } else {
-            console.log('❌ Usuario canceló la instalación');
-          }
-          deferredPrompt = null;
-        });
-      }
-    });
   </script>
 </body>
 </html>
